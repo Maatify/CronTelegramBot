@@ -1,6 +1,6 @@
 {  "name": "maatify/cron-telegram-bot",
   "description": "PHP library for Cron Telegram Bot handler, known by our team",
-  "version": "1.0.008",
+  "version": "1.0.009",
   "type": "library",
   "keywords": [
     "PHP",
