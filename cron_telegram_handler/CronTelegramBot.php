@@ -40,13 +40,13 @@ abstract class CronTelegramBot extends DbConnector
     protected string $tableAlias = self::TABLE_ALIAS;
     protected string $identify_table_id_col_name = self::IDENTIFY_TABLE_ID_COL_NAME;
     protected array $cols = self::COLS;
-    const TYPE_CONFIRM_CODE  = 1;
+    const TYPE_OTP           = 1;
     const TYPE_TEMP_PASSWORD = 2;
     const TYPE_MESSAGE       = 3;
     const TYPE_ADMIN_MESSAGE = 4;
 
     const ALL_TYPES_NAME = [
-        self::TYPE_CONFIRM_CODE  => 'confirm code',
+        self::TYPE_OTP           => 'confirm code',
         self::TYPE_TEMP_PASSWORD => 'temp password',
         self::TYPE_MESSAGE       => 'message',
         self::TYPE_ADMIN_MESSAGE => 'administrator message',

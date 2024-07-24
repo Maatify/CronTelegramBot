@@ -22,7 +22,7 @@ abstract class CronTelegramBotRecord extends CronTelegramBot
     public function RecordConfirmCode(int $entity_id,string $chat_id, string $code, ): void
     {
 
-        $this->AddCron($entity_id, $chat_id, $this->encryption_class->Hash($code), self::TYPE_CONFIRM_CODE);
+        $this->AddCron($entity_id, $chat_id, $this->encryption_class->Hash($code), self::TYPE_OTP);
     }
 
     public function RecordTempPassword(int $entity_id,string $chat_id, string $code): void

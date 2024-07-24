@@ -41,7 +41,8 @@ abstract class CronTelegramBotSender extends CronTelegramBot
                 $telegramBot = TelegramBotManager::obj($this->api_key)->Sender();
                 foreach ($all as $item) {
                     $message = match ($item['type_id']) {
-                        self::TYPE_TEMP_PASSWORD, self::TYPE_CONFIRM_CODE => $this->encryption_class->DeHashed($item['message']),
+                        self::TYPE_OTP => AppFunctions::OTPText() . $this->encryption_class->DeHashed($item['message']),
+                        self::TYPE_TEMP_PASSWORD => AppFunctions::TempPasswordText() . $this->encryption_class->DeHashed($item['message']),
                         default => $item['message'],
                     };
                     if ($telegramBot->SendMessage($item['chat_id'], $message)) {
