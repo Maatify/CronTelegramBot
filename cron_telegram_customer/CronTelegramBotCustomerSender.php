@@ -39,12 +39,14 @@ class CronTelegramBotCustomerSender extends CronTelegramBotSender
     {
         parent::__construct();
         $this->encryption_class = new CronTelegramBotCustomerEncryption();
-        $this->api_key = (new EnvEncryption())->DeHashed($_ENV['TELEGRAM_API_KEY_CUSTOMER']);
+        if(!empty($_ENV['IS_TELEGRAM_CUSTOMER_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_CUSTOMER'])) {
+            $this->api_key = (new EnvEncryption())->DeHashed($_ENV['TELEGRAM_API_KEY_CUSTOMER']);
+        }
     }
 
     public function CronSend(): void
     {
-        if(!empty($_ENV['IS_TELEGRAM_CUSTOMER_ACTIVATE'])) {
+        if(!empty($_ENV['IS_TELEGRAM_CUSTOMER_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_CUSTOMER'])) {
             QueueManager::obj()->TelegramBotCustomer();
             parent::Sender();
         }
