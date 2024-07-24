@@ -19,6 +19,8 @@ class CronTelegramBotAdminRecord extends CronTelegramBotRecord
 {
     const TABLE_NAME = 'cron_telegram_bot_admin';
     const ENTITY_COLUMN_NAME = 'admin_id';
+    protected string $tableName = self::TABLE_NAME;
+    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
     protected OpenSslKeys $encryption_class;
     private static self $instance;
 

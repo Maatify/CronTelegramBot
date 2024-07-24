@@ -21,6 +21,8 @@ class CronTelegramBotSubscriberSender extends CronTelegramBotSender
 {
     const TABLE_NAME = 'cron_telegram_bot_subscriber';
     const ENTITY_COLUMN_NAME = 'su_id';
+    protected string $tableName = self::TABLE_NAME;
+    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
     protected OpenSslKeys $encryption_class;
     protected string $api_key;
     private static self $instance;

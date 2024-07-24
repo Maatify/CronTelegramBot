@@ -17,6 +17,8 @@ class CronTelegramBotCustomerPortal extends CronTelegramBotPortal
 {
     const TABLE_NAME = 'cron_telegram_bot_customer';
     const ENTITY_COLUMN_NAME = 'ct_id';
+    protected string $tableName = self::TABLE_NAME;
+    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
     private static self $instance;
 
     public static function obj(): self

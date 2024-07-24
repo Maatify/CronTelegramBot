@@ -34,6 +34,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
     protected string $image_folder = self::IMAGE_FOLDER;
 
     const ENTITY_COLUMN_NAME = 'admin_id';
+    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
 
     // to use in list of AllPaginationThisTableFilter()
     protected array $inner_language_tables = [];
