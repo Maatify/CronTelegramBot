@@ -11,6 +11,7 @@
 namespace Maatify\CronTelegramBot;
 
 use App\DB\Handler\ParentClassHandler;
+use Maatify\CronEmail\CronEmail;
 use Maatify\Json\Json;
 use Maatify\PostValidatorV2\ValidatorConstantsTypes;
 use Maatify\PostValidatorV2\ValidatorConstantsValidators;
@@ -106,5 +107,17 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
         Json::Success(
             $result
         );
+    }
+
+    public function Initialize(): void
+    {
+        $all = array();
+        foreach (CronTelegramBot::ALL_TYPES_NAME as $key => $type) {
+            $all[] = [
+                'type_id' => $key,
+                'type_name' => $type,
+            ];
+        }
+        Json::Success($all, line: $this->class_name . __LINE__);
     }
 }

@@ -96,4 +96,27 @@ abstract class CronTelegramBot extends DbConnector
 
         Json::Success(line: $this->class_name . __LINE__);
     }
+
+
+
+    public function Resend(): void
+    {
+        $this->ValidatePostedTableId();
+        $this->AddCron(
+            $this->current_row[$this->entityColumnName ],
+            $this->current_row['chat_id'],
+            $this->current_row['message'],
+            $this->current_row['type_id'],
+
+        );
+        $this->logger_keys = [$this->identify_table_id_col_name => $this->row_id];
+        $log = $this->logger_keys;
+        $log['change'] = 'Duplicate cron id: ' . $this->current_row[$this->identify_table_id_col_name];
+        $changes[] = [$this->entityColumnName , '', $this->current_row[$this->entityColumnName ]];
+        $changes[] = ['chat_id', '', $this->current_row['chat_id']];
+        $changes[] = ['message', '', $this->current_row['message']];
+        $changes[] = ['type_id', '', $this->current_row['type_id']];
+        $this->Logger($log, $changes, $_GET['action']);
+        Json::Success(line: $this->class_name . __LINE__);
+    }
 }
