@@ -46,7 +46,7 @@ class CronTelegramBotSubscriberSender extends CronTelegramBotSender
 
     public function CronSend(): void
     {
-        if(!empty($_ENV['IS_TELEGRAM_SUBSCRIBER_ACTIVATE'])) {
+        if(!empty($_ENV['IS_TELEGRAM_SUBSCRIBER_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_SUBSCRIBER'])) {
             QueueManager::obj()->TelegramBotSubscriber();
             parent::Sender();
         }
