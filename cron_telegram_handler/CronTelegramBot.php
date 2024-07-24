@@ -22,7 +22,7 @@ abstract class CronTelegramBot extends DbConnector
     const TABLE_ALIAS                = '';
     const IDENTIFY_TABLE_ID_COL_NAME = 'cron_id';
     const ENTITY_COLUMN_NAME         = 'ct_id';
-    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
+    protected string $entityColumnName;
     const LOGGER_TYPE                = self::TABLE_NAME;
     const LOGGER_SUB_TYPE            = '';
     const COLS                       =
@@ -56,7 +56,7 @@ abstract class CronTelegramBot extends DbConnector
     protected function AddCron(int $entity_column_name, string $chat_id, string $message, int $type_id = 1): void
     {
         $this->Add([
-            self::ENTITY_COLUMN_NAME => $entity_column_name,
+            $this->entityColumnName => $entity_column_name,
             'chat_id'                => $chat_id,
             'type_id'                => $type_id,
             'message'                => $message,
