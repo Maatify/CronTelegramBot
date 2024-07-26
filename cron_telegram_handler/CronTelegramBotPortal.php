@@ -43,7 +43,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
 
     protected array $cols_to_filter = [
         [self::IDENTIFY_TABLE_ID_COL_NAME, ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
-        ['recipient', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
+        ['recipient_id', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
         ['recipient_type', ValidatorConstantsTypes::Col_Name, ValidatorConstantsValidators::Optional],
         ['chat_id', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
         ['type_id', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],

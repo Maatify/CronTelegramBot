@@ -22,13 +22,13 @@ abstract class CronTelegramBot extends DbConnector
     const IDENTIFY_TABLE_ID_COL_NAME = 'cron_id';
     const RECIPIENT_TYPE             = 'customer';
 
-    protected string $entityColumnName;
     const LOGGER_TYPE     = self::TABLE_NAME;
     const LOGGER_SUB_TYPE = '';
     const COLS            =
         [
             self::IDENTIFY_TABLE_ID_COL_NAME => 1,
-            self::RECIPIENT_TYPE             => 1,
+            'recipient_id'                   => 1,
+            'recipient_type'                 => 0,
             'chat_id'                        => 1,
             'type_id'                        => 1,
             'message'                        => 0,
@@ -54,12 +54,12 @@ abstract class CronTelegramBot extends DbConnector
         self::TYPE_ADMIN_MESSAGE => 'administrator message',
     ];
 
-    protected function AddCron(int $recipient, string $chat_id, string $message, int $type_id = 1): void
+    protected function AddCron(int $recipient_id, string $chat_id, string $message, int $type_id = 1): void
     {
         $this->Add([
-            'recipient'      => $recipient,
+            'recipient_id'      => $recipient_id,
             'recipient_type' => $this->recipient_type,
-            'chat_id'        => (int) $chat_id,
+            'chat_id'        => (int)$chat_id,
             'type_id'        => $type_id,
             'message'        => $message,
             'record_time'    => AppFunctions::CurrentDateTime(),
@@ -72,10 +72,10 @@ abstract class CronTelegramBot extends DbConnector
     {
         $this->ValidatePostedTableId();
         $this->Add([
-            'recipient'      => (int) $this->current_row['recipient'],
+            'recipient_id'      => (int)$this->current_row['recipient_id'],
             'recipient_type' => $this->current_row['recipient_type'],
-            'chat_id'        => (int) $this->current_row['chat_id'],
-            'type_id'        => (int) $this->current_row['type_id'],
+            'chat_id'        => (int)$this->current_row['chat_id'],
+            'type_id'        => (int)$this->current_row['type_id'],
             'message'        => $this->current_row['message'],
             'record_time'    => AppFunctions::CurrentDateTime(),
             'status'         => 0,
