@@ -11,7 +11,6 @@
 namespace Maatify\CronTelegramBot;
 
 use App\DB\Handler\ParentClassHandler;
-use Maatify\CronEmail\CronEmail;
 use Maatify\Json\Json;
 use Maatify\PostValidatorV2\ValidatorConstantsTypes;
 use Maatify\PostValidatorV2\ValidatorConstantsValidators;
