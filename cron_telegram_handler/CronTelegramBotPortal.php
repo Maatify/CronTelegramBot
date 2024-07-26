@@ -11,7 +11,6 @@
 namespace Maatify\CronTelegramBot;
 
 use App\DB\Handler\ParentClassHandler;
-use Maatify\CronEmail\CronEmail;
 use Maatify\Json\Json;
 use Maatify\PostValidatorV2\ValidatorConstantsTypes;
 use Maatify\PostValidatorV2\ValidatorConstantsValidators;
@@ -100,6 +99,9 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
             $result['data'] = array_map(function ($item) {
                 $types = CronTelegramBot::ALL_TYPES_NAME;
                 $item['type_name'] = $types[$item['type_id']];
+                if(in_array($item['type_id'], [CronTelegramBot::TYPE_OTP, CronTelegramBot::TYPE_TEMP_PASSWORD])){
+                    $item['message'] = "{Encrypted}";
+                }
 
                 return $item;
             }, $result['data']);
