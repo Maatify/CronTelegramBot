@@ -30,7 +30,7 @@ abstract class CronTelegramBotSender extends CronTelegramBot
 
     protected function NotSent(): array
     {
-        return $this->RowsThisTable('*', '`status` = ? ', [0]);
+        return $this->RowsThisTable('*', '`status` = ? AND `recipient_type` = ? ', [0, $this->recipient_type]);
     }
 
     protected function Sender(): void
