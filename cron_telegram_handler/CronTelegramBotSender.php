@@ -53,7 +53,7 @@ abstract class CronTelegramBotSender extends CronTelegramBot
                         default => $item['message'],
                     };
                     if ($sent = $telegramBot->SendMessage($item['chat_id'], $message)) {
-                        if(!empty($sent['success']) && !empty($sent['success']['ok'])) {
+                        if(!empty($sent['ok'])) {
                             $this->SentMarker($item[$this->identify_table_id_col_name]);
                         }else{
                             Logger::RecordLog($sent, 'telegram-bot-error');
