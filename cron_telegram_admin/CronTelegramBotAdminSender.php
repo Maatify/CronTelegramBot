@@ -19,10 +19,8 @@ use Maatify\QueueManager\QueueManager;
 
 class CronTelegramBotAdminSender extends CronTelegramBotSender
 {
-    const TABLE_NAME = 'cron_telegram_bot_admin';
-    const ENTITY_COLUMN_NAME = 'admin_id';
-    protected string $tableName = self::TABLE_NAME;
-    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
+    const RECIPIENT_TYPE = 'admin';
+    protected string $recipient_type = self::RECIPIENT_TYPE;
     protected OpenSslKeys $encryption_class;
     protected string $api_key;
     private static self $instance;

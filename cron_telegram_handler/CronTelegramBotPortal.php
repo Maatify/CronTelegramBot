@@ -24,7 +24,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
     public const LOGGER_SUB_TYPE            = CronTelegramBot::LOGGER_SUB_TYPE;
     public const COLS                       = CronTelegramBot::COLS;
     public const IMAGE_FOLDER               = self::TABLE_NAME;
-
+    const RECIPIENT_TYPE = 'customer';
     protected string $identify_table_id_col_name = self::IDENTIFY_TABLE_ID_COL_NAME;
     protected string $tableName = self::TABLE_NAME;
     protected string $tableAlias = self::TABLE_ALIAS;
@@ -32,9 +32,8 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
     protected string $logger_sub_type = self::LOGGER_SUB_TYPE;
     protected array $cols = self::COLS;
     protected string $image_folder = self::IMAGE_FOLDER;
+    protected string $recipient_type = self::RECIPIENT_TYPE;
 
-    const ENTITY_COLUMN_NAME = 'admin_id';
-    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
 
     // to use in list of AllPaginationThisTableFilter()
     protected array $inner_language_tables = [];
@@ -44,7 +43,8 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
 
     protected array $cols_to_filter = [
         [self::IDENTIFY_TABLE_ID_COL_NAME, ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
-        [self::ENTITY_COLUMN_NAME, ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
+        ['recipient', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
+        ['recipient_type', ValidatorConstantsTypes::Col_Name, ValidatorConstantsValidators::Optional],
         ['chat_id', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
         ['type_id', ValidatorConstantsTypes::Int, ValidatorConstantsValidators::Optional],
         [ValidatorConstantsTypes::Status, ValidatorConstantsTypes::Status, ValidatorConstantsValidators::Optional],

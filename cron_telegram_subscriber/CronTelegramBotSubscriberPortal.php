@@ -15,10 +15,8 @@ use Maatify\CronTelegramBot\CronTelegramBotPortal;
 
 class CronTelegramBotSubscriberPortal extends CronTelegramBotPortal
 {
-    const TABLE_NAME = 'cron_telegram_bot_subscriber';
-    const ENTITY_COLUMN_NAME = 'su_id';
-    protected string $tableName = self::TABLE_NAME;
-    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
+    const RECIPIENT_TYPE = 'subscriber';
+    protected string $recipient_type = self::RECIPIENT_TYPE;
     private static self $instance;
 
     public static function obj(): self

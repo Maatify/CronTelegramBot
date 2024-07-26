@@ -18,10 +18,8 @@ use Maatify\CronTelegramBot\CronTelegramBotRecord;
 
 class CronTelegramBotSubscriberRecord extends CronTelegramBotRecord
 {
-    const TABLE_NAME = 'cron_telegram_bot_subscriber';
-    const ENTITY_COLUMN_NAME = 'su_id';
-    protected string $tableName = self::TABLE_NAME;
-    protected string $entityColumnName = self::ENTITY_COLUMN_NAME;
+    const RECIPIENT_TYPE = 'subscriber';
+    protected string $recipient_type = self::RECIPIENT_TYPE;
     protected OpenSslKeys $encryption_class;
     private static self $instance;
 
