@@ -66,39 +66,6 @@ abstract class CronTelegramBot extends DbConnector
         ]);
     }
 
-    public function Remove(): void
-    {
-        $this->ValidatePostedTableId();
-        $note = $this->postValidator->Optional('note', ValidatorConstantsTypes::Description, $this->class_name . __LINE__);
-        $this->Delete("`$this->identify_table_id_col_name` = ? ", [$this->row_id]);
-        $this->logger_keys = [$this->identify_table_id_col_name => $this->row_id];
-        $logger[$this->identify_table_id_col_name] = $this->row_id;
-        $changes = array();
-        foreach ($this->current_row as $key => $value) {
-            $logger_change = $logger[$key] = $value;
-
-            $changes[] = [
-                $key,
-                $logger_change,
-                '',
-            ];
-        }
-        if (! empty($note)) {
-            $logger['reason'] = $note;
-
-            $changes[] = [
-                'reason',
-                '',
-                $note,
-            ];
-        }
-        $this->Logger($logger, $changes, 'Remove');
-
-        Json::Success(line: $this->class_name . __LINE__);
-    }
-
-
-
     public function Resend(): void
     {
         $this->ValidatePostedTableId();
