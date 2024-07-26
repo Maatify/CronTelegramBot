@@ -17,7 +17,7 @@ use Maatify\Json\Json;
 
 abstract class CronTelegramBot extends DbConnector
 {
-    const TABLE_NAME                 = 'cron_telegram';
+    const TABLE_NAME                 = 'cron_telegram_bot';
     const TABLE_ALIAS                = '';
     const IDENTIFY_TABLE_ID_COL_NAME = 'cron_id';
     const RECIPIENT_TYPE             = 'customer';
