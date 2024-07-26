@@ -59,7 +59,7 @@ abstract class CronTelegramBot extends DbConnector
         $this->Add([
             'recipient'      => $recipient,
             'recipient_type' => $this->recipient_type,
-            'chat_id'        => $chat_id,
+            'chat_id'        => (int) $chat_id,
             'type_id'        => $type_id,
             'message'        => $message,
             'record_time'    => AppFunctions::CurrentDateTime(),
@@ -71,19 +71,22 @@ abstract class CronTelegramBot extends DbConnector
     public function Resend(): void
     {
         $this->ValidatePostedTableId();
-        $this->AddCron(
-            $this->current_row['recipient'],
-            $this->current_row['chat_id'],
-            $this->current_row['message'],
-            $this->current_row['type_id'],
-
-        );
+        $this->Add([
+            'recipient'      => (int) $this->current_row['recipient'],
+            'recipient_type' => $this->current_row['recipient_type'],
+            'chat_id'        => (int) $this->current_row['chat_id'],
+            'type_id'        => (int) $this->current_row['type_id'],
+            'message'        => $this->current_row['message'],
+            'record_time'    => AppFunctions::CurrentDateTime(),
+            'status'         => 0,
+            'sent_time'      => AppFunctions::DefaultDateTime(),
+        ]);
         $this->logger_keys = [$this->identify_table_id_col_name => $this->row_id];
         $log = $this->logger_keys;
         $log['change'] = 'Duplicate cron id: ' . $this->current_row[$this->identify_table_id_col_name];
-        $changes[] = [$this->entityColumnName, '', $this->current_row[$this->entityColumnName]];
+        $changes[] = ['recipient', '', $this->current_row['recipient']];
+        $changes[] = ['recipient_type', '', $this->current_row['recipient_type']];
         $changes[] = ['chat_id', '', $this->current_row['chat_id']];
-        $changes[] = ['message', '', $this->current_row['message']];
         $changes[] = ['type_id', '', $this->current_row['type_id']];
         $this->Logger($log, $changes, $_GET['action']);
         Json::Success(line: $this->class_name . __LINE__);
