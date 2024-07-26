@@ -122,4 +122,16 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
         }
         Json::Success($all, line: $this->class_name . __LINE__);
     }
+
+    public function InitializeArray(): array
+    {
+        $types = array();
+        foreach (CronTelegramBot::ALL_TYPES_NAME as $key => $type) {
+            $types[] = [
+                'type_id' => $key,
+                'type_name' => $type,
+            ];
+        }
+        return $types;
+    }
 }
