@@ -48,7 +48,7 @@ class CronTelegramBotSubscriberSender extends CronTelegramBotSender
     {
         if(!empty($_ENV['IS_TELEGRAM_SUBSCRIBER_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_SUBSCRIBER'])) {
             QueueManager::obj()->TelegramBotSubscriber();
-            parent::Sender();
+            parent::sender();
         }
     }
 }

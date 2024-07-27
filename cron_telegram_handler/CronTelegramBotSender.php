@@ -23,7 +23,7 @@ abstract class CronTelegramBotSender extends CronTelegramBot
     protected string $api_key;
     private array $list;
 
-    public function sentMarker(int $cron_id): void
+    private function sentMarker(int $cron_id): void
     {
         $this->Edit([
             'status'     => 1,
@@ -31,22 +31,27 @@ abstract class CronTelegramBotSender extends CronTelegramBot
         ], "`$this->identify_table_id_col_name` = ? ", [$cron_id]);
     }
 
-    protected function notSentList(): void
+    private function notSentList(): void
     {
         $this->list =  $this->RowsThisTable('*', '`status` = ? AND `recipient_type` = ? ', [0, $this->recipient_type]);
     }
 
-    protected function notSentBySpecifiedRecipientAndChat(int $recipient_id, int $chat_id): void
+    private function notSentBySpecifiedRecipientAndChat(int $recipient_id, int $chat_id): void
     {
         $this->list =  $this->RowsThisTable('*',
             '`status` = ? AND `recipient_id` = ? AND `recipient_type` = ? AND `chat_id` = ?',
             [0, $recipient_id, $this->recipient_type, $chat_id]);
     }
 
-    protected function Sender(): void
+    protected function sender(): int
     {
         $this->notSentList();
         $this->send();
+        if(!empty($this->list)){
+            return count($this->list);
+        }else{
+            return 0;
+        }
     }
 
     protected function senderByRecipientAndChat(int $recipient_id, int $chat_id): int

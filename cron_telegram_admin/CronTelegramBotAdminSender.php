@@ -44,19 +44,21 @@ class CronTelegramBotAdminSender extends CronTelegramBotSender
         }
     }
 
-    public function CronSend(): void
+    public function CronSend(): int
     {
         if(!empty($_ENV['IS_TELEGRAM_ADMIN_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_ADMIN'])) {
             QueueManager::obj()->TelegramBotAdmin();
-            parent::Sender();
+            return parent::sender();
         }
+        return 0 ;
     }
 
-    public function cronSendByAdminIdAndChatId(int $adminId, int $chatId ): void
+    public function cronSendByAdminIdAndChatId(int $adminId, int $chatId ): int
     {
         if(!empty($_ENV['IS_TELEGRAM_ADMIN_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_ADMIN'])) {
             QueueManager::obj()->TelegramBotAdmin();
-            parent::Sender();
+            return parent::senderByRecipientAndChat($adminId, $chatId);
         }
+        return 0;
     }
 }
