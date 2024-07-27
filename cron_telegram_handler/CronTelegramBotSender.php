@@ -49,10 +49,15 @@ abstract class CronTelegramBotSender extends CronTelegramBot
         $this->send();
     }
 
-    protected function senderByRecipientAndChat(int $recipient_id, int $chat_id): void
+    protected function senderByRecipientAndChat(int $recipient_id, int $chat_id): int
     {
         $this->notSentBySpecifiedRecipientAndChat($recipient_id, $chat_id);
         $this->send();
+        if(!empty($this->list)){
+            return count($this->list);
+        }else{
+            return 0;
+        }
     }
 
     private function send(): void
