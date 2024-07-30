@@ -13,6 +13,7 @@ namespace Maatify\CronTelegramBot;
 
 use App\Assist\AppFunctions;
 use App\Assist\OpensslEncryption\OpenSslKeys;
+use Maatify\Emoji\EmojiConverter;
 use Maatify\Logger\Logger;
 use Maatify\TelegramBot\TelegramBotManager;
 
@@ -82,8 +83,9 @@ abstract class CronTelegramBotSender extends CronTelegramBot
                             $this->tempPasswordText(),
                             $this->encryption_class->DeHashed($item['message'])
                         ),
-                        default => $item['message'],
+                        default => EmojiConverter::codepointToEmoji($item['message']),
                     };
+
                     if ($sent = $telegramBot->SendMessage($item['chat_id'], $message)) {
                         if (! empty($sent['ok'])) {
                             $this->sentMarker($item[$this->identify_table_id_col_name]);

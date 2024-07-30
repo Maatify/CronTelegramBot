@@ -12,18 +12,19 @@
 namespace Maatify\CronTelegramBot;
 
 use App\Assist\OpensslEncryption\OpenSslKeys;
+use Maatify\Emoji\EmojiConverter;
 
 abstract class CronTelegramBotRecord extends CronTelegramBot
 {
     protected OpenSslKeys $encryption_class;
     public function RecordMessage(int $recipient_id,string $chat_id, string $message): void
     {
+        $message = EmojiConverter::emojiToCodepoint($message);
         $this->AddCron($recipient_id, $chat_id, $message, self::TYPE_MESSAGE);
     }
 
     public function RecordConfirmCode(int $recipient_id,string $chat_id, string $code, ): void
     {
-
         $this->AddCron($recipient_id, $chat_id, $this->encryption_class->Hash($code), self::TYPE_OTP);
     }
 
