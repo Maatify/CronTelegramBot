@@ -84,7 +84,7 @@ abstract class CronTelegramBot extends DbConnector
         $this->logger_keys = [$this->identify_table_id_col_name => $this->row_id];
         $log = $this->logger_keys;
         $log['change'] = 'Duplicate cron id: ' . $this->current_row[$this->identify_table_id_col_name];
-        $changes[] = ['recipient', '', $this->current_row['recipient']];
+        $changes[] = ['recipient', '', $this->current_row['recipient_id']];
         $changes[] = ['recipient_type', '', $this->current_row['recipient_type']];
         $changes[] = ['chat_id', '', $this->current_row['chat_id']];
         $changes[] = ['type_id', '', $this->current_row['type_id']];
