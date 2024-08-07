@@ -46,9 +46,18 @@ class CronTelegramBotCustomerSender extends CronTelegramBotSender
 
     public function CronSend(): void
     {
-        if(!empty($_ENV['IS_TELEGRAM_CUSTOMER_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_CUSTOMER'])) {
+        if(!empty($this->api_key)) {
             QueueManager::obj()->TelegramBotCustomer();
             parent::sender();
         }
+    }
+
+    public function cronSendByAdminIdAndChatId(int $customer_id, int $chatId ): int
+    {
+        if(!empty($this->api_key)) {
+            QueueManager::obj()->TelegramBotCustomer();
+            return parent::senderByRecipientAndChat($customer_id, $chatId);
+        }
+        return 0;
     }
 }
