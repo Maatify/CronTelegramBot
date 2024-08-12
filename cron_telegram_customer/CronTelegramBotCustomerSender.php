@@ -52,7 +52,7 @@ class CronTelegramBotCustomerSender extends CronTelegramBotSender
         }
     }
 
-    public function cronSendByAdminIdAndChatId(int $customer_id, int $chatId ): int
+    public function cronSendByCustomerIdAndChatId(int $customer_id, int $chatId ): int
     {
         if(!empty($this->api_key)) {
             QueueManager::obj()->TelegramBotCustomer();
