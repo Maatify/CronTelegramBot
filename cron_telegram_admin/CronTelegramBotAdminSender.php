@@ -39,14 +39,14 @@ class CronTelegramBotAdminSender extends CronTelegramBotSender
     {
         parent::__construct();
         $this->encryption_class = new CronTelegramBotAdminEncryption();
-        if(!empty($_ENV['IS_TELEGRAM_ADMIN_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_ADMIN'])) {
-            $this->api_key = (new EnvEncryption())->DeHashed($_ENV['TELEGRAM_API_KEY_ADMIN']);
+        if(!empty($_ENV['IS_TELEGRAM_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY'])) {
+            $this->api_key = (new EnvEncryption())->DeHashed($_ENV['TELEGRAM_API_KEY']);
         }
     }
 
     public function CronSend(): int
     {
-        if(!empty($_ENV['IS_TELEGRAM_ADMIN_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_ADMIN'])) {
+        if(!empty($_ENV['IS_TELEGRAM_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY'])) {
             QueueManager::obj()->TelegramBotAdmin();
             return parent::sender();
         }
@@ -55,7 +55,7 @@ class CronTelegramBotAdminSender extends CronTelegramBotSender
 
     public function cronSendByAdminIdAndChatId(int $adminId, int $chatId ): int
     {
-        if(!empty($_ENV['IS_TELEGRAM_ADMIN_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY_ADMIN'])) {
+        if(!empty($_ENV['IS_TELEGRAM_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY'])) {
             QueueManager::obj()->TelegramBotAdmin();
             return parent::senderByRecipientAndChat($adminId, $chatId);
         }
