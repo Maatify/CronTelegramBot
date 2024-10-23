@@ -86,7 +86,7 @@ abstract class CronTelegramBotSender extends CronTelegramBot
                         default => EmojiConverter::codepointToEmoji($item['message']),
                     };
 
-                    if ($sent = $telegramBot->SendMessage($item['chat_id'], $message)) {
+                    if ($sent = $telegramBot->SendMessage($item['chat_id'], htmlspecialchars_decode($message))) {
                         if (! empty($sent['ok'])) {
                             $this->sentMarker($item[$this->identify_table_id_col_name]);
                         } else {
