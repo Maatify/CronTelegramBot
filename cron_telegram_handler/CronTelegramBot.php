@@ -54,7 +54,7 @@ abstract class CronTelegramBot extends DbConnector
         self::TYPE_ADMIN_MESSAGE => 'administrator message',
     ];
 
-    protected function AddCron(int $recipient_id, string $chat_id, string $message, int $type_id = 1): void
+    protected function addCron(int $recipient_id, string $chat_id, string $message, int $type_id = 1): void
     {
         $this->Add([
             'recipient_id'      => $recipient_id,
@@ -68,7 +68,7 @@ abstract class CronTelegramBot extends DbConnector
         ]);
     }
 
-    public function Resend(): void
+    public function resend(): void
     {
         $this->ValidatePostedTableId();
         $this->Add([

@@ -10,8 +10,8 @@
  */
 namespace Maatify\CronTelegramBot;
 
-use App\DB\Handler\ParentClassHandler;
 use Maatify\Json\Json;
+use Maatify\LanguagePortalHandler\DBHandler\ParentClassHandler;
 use Maatify\PostValidatorV2\ValidatorConstantsTypes;
 use Maatify\PostValidatorV2\ValidatorConstantsValidators;
 
@@ -111,7 +111,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
         );
     }
 
-    public function Initialize(): void
+    public function initialize(): void
     {
         $all = array();
         foreach (CronTelegramBot::ALL_TYPES_NAME as $key => $type) {
@@ -123,7 +123,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
         Json::Success($all, line: $this->class_name . __LINE__);
     }
 
-    public function InitializeArray(): array
+    public function initializeArray(): array
     {
         $types = array();
         foreach (CronTelegramBot::ALL_TYPES_NAME as $key => $type) {

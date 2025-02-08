@@ -44,7 +44,7 @@ class CronTelegramBotAdminSender extends CronTelegramBotSender
         }
     }
 
-    public function CronSend(): int
+    public function cronSend(): int
     {
         if(!empty($_ENV['IS_TELEGRAM_ACTIVATE']) && !empty($_ENV['TELEGRAM_API_KEY'])) {
             QueueManager::obj()->TelegramBotAdmin();

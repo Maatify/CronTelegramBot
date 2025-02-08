@@ -44,7 +44,7 @@ class CronTelegramBotCustomerSender extends CronTelegramBotSender
         }
     }
 
-    public function CronSend(): void
+    public function cronSend(): void
     {
         if(!empty($this->api_key)) {
             QueueManager::obj()->TelegramBotCustomer();

@@ -17,18 +17,18 @@ use Maatify\Emoji\EmojiConverter;
 abstract class CronTelegramBotRecord extends CronTelegramBot
 {
     protected OpenSslKeys $encryption_class;
-    public function RecordMessage(int $recipient_id,string $chat_id, string $message): void
+    public function recordMessage(int $recipient_id,string $chat_id, string $message): void
     {
         $message = EmojiConverter::emojiToCodepoint($message);
         $this->AddCron($recipient_id, $chat_id, $message, self::TYPE_MESSAGE);
     }
 
-    public function RecordConfirmCode(int $recipient_id,string $chat_id, string $code, ): void
+    public function recordConfirmCode(int $recipient_id,string $chat_id, string $code, ): void
     {
         $this->AddCron($recipient_id, $chat_id, $this->encryption_class->Hash($code), self::TYPE_OTP);
     }
 
-    public function RecordTempPassword(int $recipient_id,string $chat_id, string $code): void
+    public function recordTempPassword(int $recipient_id,string $chat_id, string $code): void
     {
         $this->AddCron($recipient_id, $chat_id, $this->encryption_class->Hash($code), self::TYPE_TEMP_PASSWORD);
     }
