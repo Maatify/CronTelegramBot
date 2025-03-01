@@ -13,6 +13,7 @@ namespace Maatify\CronTelegramBot;
 
 use App\Assist\AppFunctions;
 use App\DB\DBS\DbConnector;
+use JetBrains\PhpStorm\NoReturn;
 use Maatify\Json\Json;
 
 abstract class CronTelegramBot extends DbConnector
@@ -68,7 +69,7 @@ abstract class CronTelegramBot extends DbConnector
         ]);
     }
 
-    public function resend(): void
+    #[NoReturn] public function resend(): void
     {
         $this->ValidatePostedTableId();
         $this->Add([

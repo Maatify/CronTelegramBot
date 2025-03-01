@@ -23,7 +23,7 @@ abstract class CronTelegramBotRecord extends CronTelegramBot
         $this->AddCron($recipient_id, $chat_id, $message, self::TYPE_MESSAGE);
     }
 
-    public function recordConfirmCode(int $recipient_id,string $chat_id, string $code, ): void
+    public function recordConfirmCode(int $recipient_id,string $chat_id, string $code): void
     {
         $this->AddCron($recipient_id, $chat_id, $this->encryption_class->Hash($code), self::TYPE_OTP);
     }

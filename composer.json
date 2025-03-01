@@ -1,6 +1,6 @@
 {  "name": "maatify/cron-telegram-bot",
   "description": "PHP library for Cron Telegram Bot handler, known by our team",
-  "version": "2.0.0001",
+  "version": "5.0.1",
   "type": "library",
   "keywords": [
     "PHP",
@@ -45,20 +45,14 @@
       "role": "IOS Developer"
     }
   ],
-  "config": {
-    "platform": {
-      "php": "8.2.0"
-    }
-  },
   "require": {
-    "php": ">=8.2",
-    "maatify/post-validator-v2": "^1.1",
-    "maatify/open-ssl": "^1.0",
+    "maatify/post-validator-v2": "^5",
+    "maatify/open-ssl": "^5",
     "ext-openssl": "*",
-    "maatify/jwt": "^1.0",
+    "maatify/jwt": "^5",
     "maatify/queue-manager": "^1.0",
-    "maatify/telegram-bot": "^2.0",
-    "maatify/language-portal-handler": "^1.0"
+    "maatify/telegram-bot": "^5",
+    "maatify/language-portal-handler": "^5"
   },
   "autoload": {
     "psr-4": {

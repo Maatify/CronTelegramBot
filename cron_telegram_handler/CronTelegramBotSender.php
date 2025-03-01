@@ -13,6 +13,7 @@ namespace Maatify\CronTelegramBot;
 
 use App\Assist\AppFunctions;
 use App\Assist\OpensslEncryption\OpenSslKeys;
+use Exception;
 use Maatify\Emoji\EmojiConverter;
 use Maatify\Logger\Logger;
 use Maatify\TelegramBot\TelegramBotManager;
@@ -94,7 +95,7 @@ abstract class CronTelegramBotSender extends CronTelegramBot
                         }
                     }
                 }
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 Logger::RecordLog($exception, 'telegram-bot');
             }
         }
