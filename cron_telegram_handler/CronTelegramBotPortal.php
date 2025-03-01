@@ -10,6 +10,7 @@
  */
 namespace Maatify\CronTelegramBot;
 
+use JetBrains\PhpStorm\NoReturn;
 use Maatify\Json\Json;
 use Maatify\LanguagePortalHandler\DBHandler\ParentClassHandler;
 use Maatify\PostValidatorV2\ValidatorConstantsTypes;
@@ -55,7 +56,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
 
     // to use in add if child classes have language_id
     protected array $child_classe_languages = [];
-    public function allPaginationThisTableFilter(string $order_with_asc_desc = ''): void
+    #[NoReturn] public function allPaginationThisTableFilter(string $order_with_asc_desc = ''): void
     {
         [$tables, $cols] = $this->HandleThisTableJoins();
         $where_to_add = '';
@@ -87,12 +88,12 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
         $this->pagination($tables, $cols, $where_to_add, $where_val_to_add);
     }
 
-    public function cronTelegramBotInitialize(): void
+    #[NoReturn] public function cronTelegramBotInitialize(): void
     {
         Json::Success(CronTelegramBot::ALL_TYPES_NAME, line: $this->class_name . __LINE__);
     }
 
-    protected function pagination(string $tables, string $cols, string $where_to_add, array $where_val_to_add): void
+    #[NoReturn] protected function pagination(string $tables, string $cols, string $where_to_add, array $where_val_to_add): void
     {
         $result = $this->ArrayPaginationThisTableFilter($tables, $cols, $where_to_add, $where_val_to_add, " ORDER BY `$this->identify_table_id_col_name` ASC");
         if (! empty($result['data'])) {
@@ -111,7 +112,7 @@ abstract class CronTelegramBotPortal extends ParentClassHandler
         );
     }
 
-    public function initialize(): void
+    #[NoReturn] public function initialize(): void
     {
         $all = array();
         foreach (CronTelegramBot::ALL_TYPES_NAME as $key => $type) {
