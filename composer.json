@@ -50,7 +50,7 @@
     "maatify/open-ssl": "^5",
     "ext-openssl": "*",
     "maatify/jwt": "^5",
-    "maatify/queue-manager": "^1.0",
+    "maatify/queue-manager": "^5.0",
     "maatify/telegram-bot": "^5",
     "maatify/language-portal-handler": "^5"
   },
